@@ -47,7 +47,7 @@ export default function IntroAnimation() {
             transition={{ duration: 4.5 }}
           >
             <h1 className="text-2xl text-lpi-beige font-light tracking-wide leading-relaxed">
-              Découvrez une nouvelle façon de choisir vos plats
+            &quot;Découvrez une nouvelle façon de choisir vos plats&quo;
             </h1>
           </motion.div>
         )}
@@ -62,7 +62,7 @@ export default function IntroAnimation() {
             transition={{ duration: 5.5 }}
           >
             <p className='text-xl text-lpi-beige font-light italic leading-relaxed'>
-              "Laissez-vous guider par vos envies à travers une expérience unique"
+            &quot;Je vous invite à découvrir nos spécialités italiennes&quot;
             </p>
           </motion.div>
         )}
@@ -95,7 +95,7 @@ export default function IntroAnimation() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1 }}
             >
-              Tahar da faustino belkadi
+              &quot;Tahar da faustino belkadi&quot;
             </motion.p>
           </motion.div>
         )}
