@@ -80,7 +80,7 @@ export default function DishSwiper() {
   if (!dishes.length) return null
 
   return (
-    <div className="fixed inset-0 bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="fixed inset-0 bg-gray-50 flex flex-col items-center justify-center p-4 overflow-hidden touch-none">
       <Link 
         href="/menu" 
         className="absolute top-6 left-6 z-50 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
