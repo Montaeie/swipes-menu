@@ -105,7 +105,7 @@ export default function MenuPage() {
                  </p>
 
                  {/* Ligne décorative */}
-                 <div className="absolute bottom-4 w-12 h-0.5 bg-lpi-green/20 rounded-full" />
+                 
                </div>
              </motion.div>
            </Link>
