@@ -84,12 +84,12 @@ export default function DishSwiper() {
     {/* Augmentons le padding-top de la flèche */}
     <Link 
       href="/menu" 
-      className="absolute top-8 left-6 z-50 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
+      className="absolute top-5 left-6 z-50 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
     >
       <ArrowLeft className="w-6 h-6 text-gray-600" />
     </Link>
 
-       <div className="w-full max-w-md h-[70vh] relative mt-14">
+       <div className="w-full max-w-md h-[70vh] relative mt-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
