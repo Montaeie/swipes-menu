@@ -1,5 +1,5 @@
 'use client'
-import { motion, PanInfo, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowLeft, X, Heart } from 'lucide-react'

@@ -61,7 +61,7 @@ export default function IntroAnimation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 5.5 }}
           >
-            <p className="text-xl text-lpi-beige font-light italic leading-relaxed">
+            <p className='text-xl text-lpi-beige font-light italic leading-relaxed'>
               "Laissez-vous guider par vos envies à travers une expérience unique"
             </p>
           </motion.div>
