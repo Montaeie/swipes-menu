@@ -6,6 +6,10 @@ import { ArrowLeft, X, Heart } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { Dish, dishesData } from '@/data/dishes'
+import { IngredientDetailModal } from './IngredientDetailModal';
+
+
+
 
 export default function DishSwiper() {
   const params = useParams()
@@ -14,12 +18,12 @@ export default function DishSwiper() {
   const [exitX, setExitX] = useState(0)
   const [showMatch, setShowMatch] = useState(false)
   const [dishes, setDishes] = useState<Dish[]>([])
+  const [showIngredientDetails, setShowIngredientDetails] = useState(false)
   
   useEffect(() => {
     if (category && dishesData[category]) {
-      const shuffledDishes = [...dishesData[category]]
-        .sort(() => Math.random() - 0.5)
-      setDishes(shuffledDishes)
+      // On prend simplement les plats dans l'ordre sans les mélanger
+      setDishes(dishesData[category])
     }
   }, [category])
 
@@ -29,23 +33,17 @@ export default function DishSwiper() {
     
     if (direction === 'right') {
       setShowMatch(true)
-      setTimeout(() => {
-        setShowMatch(false)
-        handleNextCard()
-      }, 5000)
+      // On supprime le timeout qui fait passer au plat suivant
     } else {
       setTimeout(() => {
         handleNextCard()
       }, 200)
     }
-  }
+}
 
   const handleNextCard = () => {
     if (currentIndex >= dishes.length - 1) {
-      // Rechargement des plats de la même catégorie
-      const newShuffledDishes = [...dishesData[category]]
-        .sort(() => Math.random() - 0.5)
-      setDishes(newShuffledDishes)
+      // Au lieu de remélanger, on recommence simplement au début
       setCurrentIndex(0)
     } else {
       setCurrentIndex(prev => prev + 1)
@@ -117,8 +115,8 @@ export default function DishSwiper() {
           >
             <div className="relative w-full h-full">
               <Image
-                src={dishes[currentIndex].image}
-                alt=""
+                src={dishes[currentIndex].image ?? '/default-dish.jpg'}
+                alt={dishes[currentIndex].name}
                 fill
                 draggable="false"
                 className="object-cover pointer-events-none"
@@ -195,17 +193,59 @@ export default function DishSwiper() {
               <h2 className="text-2xl font-medium text-gray-800 mb-4">
                 {dishes[currentIndex].name}
               </h2>
+              
               <div className="space-y-2">
                 {dishes[currentIndex].ingredients.map((ingredient, idx) => (
-                  <p key={idx} className="text-gray-600">
-                    {ingredient}
-                  </p>
+                  <div key={idx}>
+                    <p className="text-gray-600">
+                      {ingredient}
+                    </p>
+                  </div>
                 ))}
+                <div className="flex justify-end mb-4">
+                  <div className="price-neumorphic inline-flex items-center gap-1 px-4 py-2">
+                    <span className="text-lg font-medium text-gray-700">
+      {dishes[currentIndex].price}
+       </span>
+       <span className="text-base font-normal text-gray-600">€</span>
+       </div>
+       </div>
+
+       <button
+                onClick={() => setShowIngredientDetails(true)}
+                className="mt-4 w-full py-3 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-colors"
+              >
+                Découvrir les ingrédients en détail
+              </button>
+
+              <button
+      onClick={() => {
+        setShowMatch(false)
+        handleNextCard()
+      }}
+      className="w-full py-3 bg-gray-100 text-gray-800 rounded-xl hover:bg-gray-200 transition-colors"
+    >
+      Voir le plat suivant
+    </button>
+
+
+                
+
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {showIngredientDetails && (
+          <IngredientDetailModal
+          dish={dishes[currentIndex]}  // On passe le plat entier
+          onClose={() => setShowIngredientDetails(false)}
+        />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
+
