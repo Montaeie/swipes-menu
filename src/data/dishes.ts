@@ -1,5 +1,4 @@
-// src/data/dishes.ts
-import { IngredientDetail } from './ingredientsDetails';
+
 
 export interface Dish {
     id: string;
